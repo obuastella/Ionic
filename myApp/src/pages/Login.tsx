@@ -30,6 +30,7 @@ const Login: React.FC = () => {
 
   const finishIntro = async () => {
     console.log("FIN");
+    setIntroSeen(true);
   };
   return (
     <>
