@@ -1,4 +1,5 @@
 import {
+  IonButton,
   IonCard,
   IonCardContent,
   IonContent,
@@ -35,12 +36,29 @@ const Login: React.FC = () => {
                 placeholder="johndoe@gmail.com"
               ></IonInput>
               <IonInput
+                className="ion-margin-top"
                 label="Password"
                 labelPlacement="floating"
                 fill="outline"
                 type="password"
                 placeholder="johndoe@gmail.com"
               ></IonInput>
+              <IonButton
+                className="ion-margin-top"
+                type="submit"
+                expand="block"
+              >
+                Login
+              </IonButton>
+              <IonButton
+                routerLink="/register"
+                color={"medium"}
+                className="ion-margin-top"
+                type="button"
+                expand="block"
+              >
+                Create Account
+              </IonButton>
             </form>
           </IonCardContent>
         </IonCard>
