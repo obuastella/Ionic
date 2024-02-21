@@ -12,14 +12,11 @@ const Login: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color={"success"}>
           <IonTitle>Page Title</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>Test</IonContent>
-      <IonFooter>
-        <IonToolbar>Toolbar area</IonToolbar>
-      </IonFooter>
     </IonPage>
   );
 };
