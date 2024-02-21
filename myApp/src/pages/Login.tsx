@@ -1,5 +1,6 @@
 import {
   IonContent,
+  IonFooter,
   IonHeader,
   IonPage,
   IonTitle,
@@ -15,7 +16,10 @@ const Login: React.FC = () => {
           <IonTitle>Page Title</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding">UI goes here...</IonContent>
+      <IonContent>Test</IonContent>
+      <IonFooter>
+        <IonToolbar>Toolbar area</IonToolbar>
+      </IonFooter>
     </IonPage>
   );
 };
