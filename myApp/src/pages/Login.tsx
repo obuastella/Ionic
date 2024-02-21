@@ -5,13 +5,15 @@ import {
   IonContent,
   IonFooter,
   IonHeader,
+  IonIcon,
   IonInput,
   IonPage,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
 import React from "react";
-
+import { logInOutline, personCircleOutline } from "ionicons/icons";
+import dummy from "../assets/dummy.png";
 const Login: React.FC = () => {
   function handleLogin(e: any) {
     e.preventDefault();
@@ -27,6 +29,7 @@ const Login: React.FC = () => {
       <IonContent>
         <IonCard>
           <IonCardContent>
+            <img src={dummy} alt="dummy-img" />
             <form onSubmit={handleLogin}>
               <IonInput
                 label="Email"
@@ -49,6 +52,7 @@ const Login: React.FC = () => {
                 expand="block"
               >
                 Login
+                <IonIcon icon={logInOutline} slot="end" />
               </IonButton>
               <IonButton
                 routerLink="/register"
@@ -58,6 +62,7 @@ const Login: React.FC = () => {
                 expand="block"
               >
                 Create Account
+                <IonIcon icon={personCircleOutline} slot="end" />
               </IonButton>
             </form>
           </IonCardContent>
