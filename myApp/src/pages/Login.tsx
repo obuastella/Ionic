@@ -8,6 +8,7 @@ import {
   IonIcon,
   IonInput,
   IonPage,
+  IonThumbnail,
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
@@ -26,10 +27,13 @@ const Login: React.FC = () => {
           <IonTitle>My App</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
+
+      <IonContent scrollY={false}>
         <IonCard>
           <IonCardContent>
-            <img src={dummy} alt="dummy-img" />
+            <div className="ion-text-center ion-padding --border-radius">
+              <img src={dummy} alt="dummy-img" />
+            </div>
             <form onSubmit={handleLogin}>
               <IonInput
                 label="Email"
