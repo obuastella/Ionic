@@ -11,14 +11,17 @@ import {
   IonThumbnail,
   IonTitle,
   IonToolbar,
+  useIonRouter,
 } from "@ionic/react";
 import React from "react";
 import { logInOutline, personCircleOutline } from "ionicons/icons";
 import dummy from "../assets/dummy.png";
 const Login: React.FC = () => {
+  const router = useIonRouter();
   function handleLogin(e: any) {
     e.preventDefault();
     console.log(e);
+    // router.push() --for the future
   }
   return (
     <IonPage>

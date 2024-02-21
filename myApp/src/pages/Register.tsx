@@ -1,5 +1,7 @@
 import {
+  IonBackButton,
   IonButton,
+  IonButtons,
   IonCard,
   IonCardContent,
   IonContent,
@@ -7,23 +9,35 @@ import {
   IonIcon,
   IonInput,
   IonPage,
+  IonRoute,
   IonTitle,
   IonToolbar,
+  useIonRouter,
 } from "@ionic/react";
 import React from "react";
 import dummy from "../assets/dummy.png";
-import { logInOutline, personCircleOutline } from "ionicons/icons";
+import {
+  checkmarkDoneOutline,
+  logInOutline,
+  personCircleOutline,
+} from "ionicons/icons";
 
 const Register: React.FC = () => {
-  function handleSignUp(e: any) {
+  const router = useIonRouter();
+  const handleSignUp = (e: any) => {
     e.preventDefault();
     console.log(e);
-  }
+    router.goBack();
+  };
+
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar color={"success"}>
           <IonTitle>Creat Account</IonTitle>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/"></IonBackButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
 
@@ -55,18 +69,8 @@ const Register: React.FC = () => {
                 type="submit"
                 expand="block"
               >
-                Login
-                <IonIcon icon={logInOutline} slot="end" />
-              </IonButton>
-              <IonButton
-                routerLink="/register"
-                color={"medium"}
-                className="ion-margin-top"
-                type="button"
-                expand="block"
-              >
-                Create Account
-                <IonIcon icon={personCircleOutline} slot="end" />
+                Create My Account
+                <IonIcon icon={checkmarkDoneOutline} slot="end" />
               </IonButton>
             </form>
           </IonCardContent>
