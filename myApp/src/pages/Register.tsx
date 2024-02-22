@@ -44,7 +44,7 @@ const Register: React.FC = () => {
       <IonContent scrollY={false}>
         <IonCard>
           <IonCardContent>
-            <div className="ion-text-center ion-padding --border-radius">
+            <div className="ion-text-center ion-padding ">
               <img src={dummy} alt="dummy-img" />
             </div>
             <form onSubmit={handleSignUp}>
