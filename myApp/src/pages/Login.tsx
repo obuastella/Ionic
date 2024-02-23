@@ -11,6 +11,7 @@ import {
   IonThumbnail,
   IonTitle,
   IonToolbar,
+  useIonLoading,
   useIonRouter,
 } from "@ionic/react";
 import React, { useEffect, useState } from "react";
@@ -22,8 +23,9 @@ import { Preferences } from "@capacitor/preferences";
 const INTRO_KEY = "intro-seen";
 
 const Login: React.FC = () => {
-  const [introSeen, setIntroSeen] = useState(false);
   const router = useIonRouter();
+  const [introSeen, setIntroSeen] = useState(true);
+  const [present, dismiss] = useIonLoading();
 
   useEffect(() => {
     // this runs once when the component mounts
@@ -38,12 +40,19 @@ const Login: React.FC = () => {
   function handleLogin(e: any) {
     e.preventDefault();
     console.log(e);
-    // router.push() --for the future
+    // Some verification is supposed to be done here, that sends to the backend...
+    router.push("/app", "root");
   }
 
   const finishIntro = async () => {
     console.log("FIN");
+    setIntroSeen(true);
     Preferences.set({ key: INTRO_KEY, value: "true" });
+  };
+  const seeIntroAgain = async () => {
+    console.log("FIN");
+    setIntroSeen(false);
+    Preferences.remove({ key: INTRO_KEY });
   };
   return (
     <>
@@ -95,6 +104,19 @@ const Login: React.FC = () => {
                     expand="block"
                   >
                     Create Account
+                    <IonIcon icon={personCircleOutline} slot="end" />
+                  </IonButton>
+                  {/* To watch the intor again */}
+                  <IonButton
+                    fill="clear"
+                    size="small"
+                    color={"warning"}
+                    className="ion-margin-top"
+                    type="button"
+                    expand="block"
+                    onClick={seeIntroAgain}
+                  >
+                    Watch into Again
                     <IonIcon icon={personCircleOutline} slot="end" />
                   </IonButton>
                 </form>
