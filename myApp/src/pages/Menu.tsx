@@ -1,11 +1,13 @@
 import {
   IonContent,
   IonHeader,
+  IonIcon,
   IonItem,
   IonMenu,
   IonMenuToggle,
   IonPage,
   IonRouterOutlet,
+  IonSplitPane,
   IonTitle,
   IonToggle,
   IonToolbar,
@@ -25,28 +27,35 @@ const Menu: React.FC = () => {
   return (
     <IonPage>
       {/* side bar */}
-      <IonMenu contentId="main">
-        <IonHeader>
-          <IonToolbar color="secondary">Menu</IonToolbar>
-        </IonHeader>
-        <IonContent>
-          {path.map((item, index) => (
-            <IonMenuToggle key={index}>
-              <IonItem routerLink={item.url} routerDirection="none">
-                {item.name}
-              </IonItem>
-            </IonMenuToggle>
-          ))}
-        </IonContent>
-      </IonMenu>
+      <IonSplitPane contentId="main">
+        <IonMenu contentId="main">
+          <IonHeader>
+            <IonToolbar color="secondary">Menu</IonToolbar>
+          </IonHeader>
+          <IonContent>
+            {path.map((item, index) => (
+              <IonMenuToggle key={index} autoHide={false}>
+                <IonItem
+                  detail={false}
+                  routerLink={item.url}
+                  routerDirection="none"
+                >
+                  <IonIcon slot="start" icon={item.icons} />
+                  {item.name}
+                </IonItem>
+              </IonMenuToggle>
+            ))}
+          </IonContent>
+        </IonMenu>
 
-      <IonRouterOutlet id="main">
-        <Route exact path="/app/list" component={List} />
-        <Route exact path="/app/settings" component={Settings} />
-        <Route exact path="/app">
-          <Redirect to="/app/list" />
-        </Route>
-      </IonRouterOutlet>
+        <IonRouterOutlet id="main">
+          <Route exact path="/app/list" component={List} />
+          <Route exact path="/app/settings" component={Settings} />
+          <Route exact path="/app">
+            <Redirect to="/app/list" />
+          </Route>
+        </IonRouterOutlet>
+      </IonSplitPane>
     </IonPage>
   );
 };

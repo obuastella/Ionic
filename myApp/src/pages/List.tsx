@@ -15,7 +15,7 @@ const List: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color={"success"}>
           <IonButtons slot="start">
             <IonMenuButton></IonMenuButton>
           </IonButtons>
