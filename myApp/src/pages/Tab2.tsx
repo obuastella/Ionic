@@ -1,6 +1,9 @@
 import {
+  IonButton,
+  IonButtons,
   IonContent,
   IonHeader,
+  IonMenuButton,
   IonPage,
   IonTitle,
   IonToolbar,
@@ -11,7 +14,10 @@ const Tab2: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color={"success"}>
+          <IonButtons slot="start">
+            <IonMenuButton />
+          </IonButtons>
           <IonTitle>Tab2 title</IonTitle>
         </IonToolbar>
       </IonHeader>

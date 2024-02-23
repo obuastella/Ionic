@@ -2,6 +2,8 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonIcon,
+  IonLabel,
   IonMenuButton,
   IonPage,
   IonRouterOutlet,
@@ -16,13 +18,20 @@ import React from "react";
 import { Redirect, Route } from "react-router";
 import Tab1 from "./Tab1";
 import Tab2 from "./Tab2";
+import { ellipse, settingsOutline, triangle } from "ionicons/icons";
 
 const Settings: React.FC = () => {
   return (
     <IonTabs>
       <IonTabBar slot="bottom">
-        <IonTabButton tab="1" href="/app/settings/tab1"></IonTabButton>
-        <IonTabButton tab="2" href="/app/settings/tab2"></IonTabButton>
+        <IonTabButton tab="1" href="/app/settings/tab1">
+          <IonIcon icon={triangle} />
+          <IonLabel>Tab1</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="2" href="/app/settings/tab2">
+          <IonIcon icon={ellipse} />
+          <IonLabel>Tab2</IonLabel>
+        </IonTabButton>
       </IonTabBar>
 
       <IonRouterOutlet>
