@@ -4,12 +4,15 @@ import {
   IonButtons,
   IonCard,
   IonCardContent,
+  IonCol,
   IonContent,
+  IonGrid,
   IonHeader,
   IonIcon,
   IonInput,
   IonPage,
   IonRoute,
+  IonRow,
   IonTitle,
   IonToolbar,
   useIonRouter,
@@ -43,37 +46,48 @@ const Register: React.FC = () => {
 
       <IonContent scrollY={false}>
         <IonCard>
-          <IonCardContent>
-            <div className="ion-text-center ion-padding ">
-              <img src={dummy} alt="dummy-img" />
-            </div>
-            <form onSubmit={handleSignUp}>
-              <IonInput
-                label="Email"
-                labelPlacement="floating"
-                fill="outline"
-                type="email"
-                placeholder="johndoe@gmail.com"
-              ></IonInput>
-              <IonInput
-                className="ion-margin-top"
-                label="Password"
-                labelPlacement="floating"
-                fill="outline"
-                type="password"
-                placeholder="johndoe@gmail.com"
-              ></IonInput>
-              <IonButton
-                routerLink="/"
-                className="ion-margin-top"
-                type="submit"
-                expand="block"
-              >
-                Create My Account
-                <IonIcon icon={checkmarkDoneOutline} slot="end" />
-              </IonButton>
-            </form>
-          </IonCardContent>
+          <IonGrid fixed>
+            <IonRow className="ion-justify-content-center">
+              <IonCol size="12" sizeMd="8" sizeLg="6" sizeXl="4">
+                <div className="ion-text-center ion-padding ">
+                  <img src={dummy} alt="dummy-img" />
+                </div>
+              </IonCol>
+            </IonRow>
+            {/*  */}
+            <IonRow className="ion-justify-content-center">
+              <IonCol size="12" sizeMd="8" sizeLg="6" sizeXl="4">
+                <IonCardContent>
+                  <form onSubmit={handleSignUp}>
+                    <IonInput
+                      label="Email"
+                      labelPlacement="floating"
+                      fill="outline"
+                      type="email"
+                      placeholder="johndoe@gmail.com"
+                    ></IonInput>
+                    <IonInput
+                      className="ion-margin-top"
+                      label="Password"
+                      labelPlacement="floating"
+                      fill="outline"
+                      type="password"
+                      placeholder="johndoe@gmail.com"
+                    ></IonInput>
+                    <IonButton
+                      routerLink="/"
+                      className="ion-margin-top"
+                      type="submit"
+                      expand="block"
+                    >
+                      Create My Account
+                      <IonIcon icon={checkmarkDoneOutline} slot="end" />
+                    </IonButton>
+                  </form>
+                </IonCardContent>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
         </IonCard>
       </IonContent>
     </IonPage>
