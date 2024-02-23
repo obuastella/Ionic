@@ -2,12 +2,15 @@ import {
   IonButton,
   IonCard,
   IonCardContent,
+  IonCol,
   IonContent,
   IonFooter,
+  IonGrid,
   IonHeader,
   IonIcon,
   IonInput,
   IonPage,
+  IonRow,
   IonThumbnail,
   IonTitle,
   IonToolbar,
@@ -70,12 +73,18 @@ const Login: React.FC = () => {
             </IonToolbar>
           </IonHeader>
 
-          <IonContent scrollY={false}>
+          <IonContent scrollY={false} className="ion-padding">
+            <IonGrid>
+              <IonRow>
+                <IonCol size="12" sizeMd="8" sizeLg="6" sizeXl="4">
+                  <div className="ion-text-center ion-padding --border-radius">
+                    <img src={dummy} alt="dummy-img" />
+                  </div>
+                </IonCol>
+              </IonRow>
+            </IonGrid>
             <IonCard>
               <IonCardContent>
-                <div className="ion-text-center ion-padding --border-radius">
-                  <img src={dummy} alt="dummy-img" />
-                </div>
                 <form onSubmit={handleLogin}>
                   <IonInput
                     label="Email"
