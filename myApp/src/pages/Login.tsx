@@ -37,12 +37,16 @@ const Login: React.FC = () => {
   }, []);
 
   //   Handle Login
-  function handleLogin(e: any) {
+  const handleLogin = async (e: any) => {
     e.preventDefault();
     console.log(e);
-    // Some verification is supposed to be done here, that sends to the backend...
-    router.push("/app", "root");
-  }
+    await present({ message: "Logging in...", duration: 3000 });
+    setTimeout(async () => {
+      dismiss();
+      // Some verification is supposed to be done here, that sends to the backend...
+      router.push("/app", "root");
+    }, 3000);
+  };
 
   const finishIntro = async () => {
     console.log("FIN");
