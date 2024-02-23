@@ -47,7 +47,6 @@ const Menu: React.FC = () => {
             ))}
           </IonContent>
         </IonMenu>
-
         <IonRouterOutlet id="main">
           <Route exact path="/app/list" component={List} />
           <Route exact path="/app/settings" component={Settings} />
