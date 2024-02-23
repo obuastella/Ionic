@@ -13,13 +13,26 @@ import {
   IonToolbar,
   useIonRouter,
 } from "@ionic/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { logInOutline, personCircleOutline } from "ionicons/icons";
 import dummy from "../assets/dummy.png";
 import Intro from "../components/intro";
+import { Preferences } from "@capacitor/preferences";
+
+const INTRO_KEY = "intro-seen";
+
 const Login: React.FC = () => {
   const [introSeen, setIntroSeen] = useState(false);
   const router = useIonRouter();
+
+  useEffect(() => {
+    // this runs once when the component mounts
+    const checkStorage = async () => {
+      const seen = await Preferences.get({ key: INTRO_KEY });
+      setIntroSeen(seen.value === "true");
+    };
+    checkStorage();
+  }, []);
 
   //   Handle Login
   function handleLogin(e: any) {
@@ -30,7 +43,7 @@ const Login: React.FC = () => {
 
   const finishIntro = async () => {
     console.log("FIN");
-    setIntroSeen(true);
+    Preferences.set({ key: INTRO_KEY, value: "true" });
   };
   return (
     <>
