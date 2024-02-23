@@ -1,4 +1,5 @@
 import {
+  IonButton,
   IonContent,
   IonHeader,
   IonIcon,
@@ -16,7 +17,7 @@ import React from "react";
 import { Route, Redirect } from "react-router";
 import List from "./List";
 import Settings from "./Settings";
-import { homeOutline, newspaperOutline } from "ionicons/icons";
+import { homeOutline, logOutOutline, newspaperOutline } from "ionicons/icons";
 
 const Menu: React.FC = () => {
   // Creating paths for menu items
@@ -26,8 +27,8 @@ const Menu: React.FC = () => {
   ];
   return (
     <IonPage>
-      {/* side bar */}
       <IonSplitPane contentId="main">
+        {/* Side bar */}
         <IonMenu contentId="main">
           <IonHeader>
             <IonToolbar color="secondary">Menu</IonToolbar>
@@ -45,6 +46,12 @@ const Menu: React.FC = () => {
                 </IonItem>
               </IonMenuToggle>
             ))}
+            <IonMenuToggle autoHide={false}>
+              <IonButton expand="block" routerLink="/" routerDirection="root">
+                <IonIcon slot="start" icon={logOutOutline} />
+                Logout
+              </IonButton>
+            </IonMenuToggle>
           </IonContent>
         </IonMenu>
         <IonRouterOutlet id="main">
