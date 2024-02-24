@@ -7,6 +7,7 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonChip,
   IonContent,
   IonHeader,
   IonIcon,
@@ -18,6 +19,7 @@ import {
   IonSearchbar,
   IonTitle,
   IonToolbar,
+  useIonAlert,
   useIonViewWillEnter,
 } from "@ionic/react";
 import React, { useState } from "react";
@@ -28,6 +30,7 @@ import { trashBinOutline } from "ionicons/icons";
 const List: React.FC = () => {
   const [loading, setLoading] = useState<Boolean>(true);
   const [users, setUsers] = useState<any[]>([]);
+  const [showAlert] = useIonAlert();
 
   // Works like useEffect
   // useIonViewWillEnter(async () => {
@@ -52,7 +55,24 @@ const List: React.FC = () => {
     return users.results;
   };
 
-  const clearList = () => {};
+  const clearList = () => {
+    showAlert({
+      header: "Confirm!",
+      message: "Are you sure you want to remove all users",
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+        },
+        {
+          text: "Delete",
+          handler: () => {
+            setUsers([]);
+          },
+        },
+      ],
+    });
+  };
   return (
     <IonPage>
       <IonHeader>
@@ -62,7 +82,7 @@ const List: React.FC = () => {
           </IonButtons>
 
           <IonTitle>List</IonTitle>
-          <IonButtons slot="end">
+          <IonButtons slot="end" onClick={clearList}>
             <IonButton>
               <IonIcon slot="icon-only" icon={trashBinOutline} color="danger" />
             </IonButton>
@@ -85,6 +105,7 @@ const List: React.FC = () => {
                   {user.name.first} {user.name.last}
                   <p>{user.email}</p>
                 </IonLabel>
+                <IonChip slot="end">{user.nat}</IonChip>
               </IonItem>
             </IonCardContent>
           </IonCard>
