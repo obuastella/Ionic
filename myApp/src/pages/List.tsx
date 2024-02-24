@@ -1,9 +1,18 @@
 import {
+  IonAvatar,
   IonButton,
   IonButtons,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
   IonContent,
   IonHeader,
   IonIcon,
+  IonImg,
+  IonItem,
+  IonLabel,
   IonMenuButton,
   IonPage,
   IonSearchbar,
@@ -21,15 +30,26 @@ const List: React.FC = () => {
   const [users, setUsers] = useState<any[]>([]);
 
   // Works like useEffect
-  useIonViewWillEnter(async () => {
-    const users = await getUsers();
-    setUsers(users);
-    setLoading(false);
+  // useIonViewWillEnter(async () => {
+  //   const users = await getUsers();
+  //   setUsers(users);
+  //   setLoading(false);
+  // });
+  // added
+  useIonViewWillEnter(() => {
+    const fetchData = async () => {
+      const users = await getUsers();
+      setUsers(users);
+      setLoading(false);
+    };
+
+    fetchData();
   });
+  //
   const getUsers = async () => {
     const data = await fetch("https://randomuser.me/api?results=10");
     const users = await data.json();
-    return users;
+    return users.results;
   };
 
   const clearList = () => {};
@@ -53,7 +73,23 @@ const List: React.FC = () => {
           <IonSearchbar></IonSearchbar>
         </IonToolbar>
       </IonHeader>
-      <IonContent></IonContent>
+      <IonContent>
+        {users.map((user, index) => (
+          <IonCard key={index}>
+            <IonCardContent class="ion-no-padding">
+              <IonItem lines="none">
+                <IonAvatar slot="start">
+                  <IonImg src={user.picture.thumbnail} alt="" />
+                </IonAvatar>
+                <IonLabel>
+                  {user.name.first} {user.name.last}
+                  <p>{user.email}</p>
+                </IonLabel>
+              </IonItem>
+            </IonCardContent>
+          </IonCard>
+        ))}
+      </IonContent>
     </IonPage>
   );
 };
