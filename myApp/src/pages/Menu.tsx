@@ -31,7 +31,9 @@ const Menu: React.FC = () => {
         {/* Side bar */}
         <IonMenu contentId="main">
           <IonHeader>
-            <IonToolbar color="secondary">Menu</IonToolbar>
+            <IonToolbar color="secondary">
+              <h3 className="ion-margin">Menu</h3>
+            </IonToolbar>
           </IonHeader>
           <IonContent>
             {path.map((item, index) => (

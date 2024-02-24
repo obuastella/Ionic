@@ -32,13 +32,7 @@ const List: React.FC = () => {
   const [users, setUsers] = useState<any[]>([]);
   const [showAlert] = useIonAlert();
 
-  // Works like useEffect
-  // useIonViewWillEnter(async () => {
-  //   const users = await getUsers();
-  //   setUsers(users);
-  //   setLoading(false);
-  // });
-  // added
+  // Works like useEffect hook
   useIonViewWillEnter(() => {
     const fetchData = async () => {
       const users = await getUsers();
