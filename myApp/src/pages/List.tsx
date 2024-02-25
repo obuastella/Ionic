@@ -28,6 +28,7 @@ import {
   IonSkeletonText,
   IonTitle,
   IonToolbar,
+  IonicSlides,
   useIonAlert,
   useIonToast,
   useIonViewWillEnter,
@@ -196,7 +197,23 @@ const List: React.FC = () => {
                 <IonSegmentButton value="calendar">Calendar</IonSegmentButton>
               </IonSegment>
             </IonToolbar>
-            <IonContent>Sheet</IonContent>
+            <IonContent className="ion-padding">
+              {activeSegment === "details" && (
+                <IonCard>
+                  <IonAvatar slot="start">
+                    <IonImg src={selectedUser?.picture.logo} />
+                  </IonAvatar>
+                  <IonCardContent className="ion-no-padding">
+                    <IonItem lines="none">
+                      <IonLabel className="ion-text-wrap">
+                        {selectedUser?.name.first} {selectedUser?.name.last}
+                        <p>{selectedUser?.email}</p>
+                      </IonLabel>
+                    </IonItem>
+                  </IonCardContent>
+                </IonCard>
+              )}
+            </IonContent>
           </IonHeader>
         </IonModal>
       </IonContent>
