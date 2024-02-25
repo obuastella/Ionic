@@ -157,14 +157,22 @@ const List: React.FC = () => {
           </IonCard>
         ))}
         {/* Added modal */}
-        <IonModal ref={modal} isOpen={selectedUser !== null}>
+        <IonModal
+          breakpoints={[0, 0.5, 0.8]}
+          initialBreakpoint={0.5}
+          ref={modal}
+          isOpen={selectedUser !== null}
+          onIonModalWillDismiss={() => setSelectedUser(null)}
+        >
           <IonHeader>
             <IonToolbar color={"success"}>
               <IonButtons slot="start">
                 <IonButton onClick={() => modal.current?.dismiss()}>
                   Cancel
                 </IonButton>
-                <IonTitle>User</IonTitle>
+                <IonTitle>
+                  {selectedUser?.name.first} {selectedUser?.name.last}
+                </IonTitle>
               </IonButtons>
             </IonToolbar>
             <IonContent>Sheet</IonContent>
