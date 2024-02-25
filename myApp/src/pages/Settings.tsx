@@ -39,7 +39,7 @@ const Settings: React.FC = () => {
         <Route path="/app/settings/tab2" component={Tab2} />
 
         <Route exact path="/app/settings">
-          <Redirect to={"/app/settings/tab1"} />
+          <Redirect to="/app/settings/tab1" />
         </Route>
       </IonRouterOutlet>
     </IonTabs>
