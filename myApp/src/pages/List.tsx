@@ -16,6 +16,7 @@ import {
   IonLabel,
   IonListHeader,
   IonMenuButton,
+  IonModal,
   IonPage,
   IonRefresher,
   IonRefresherContent,
@@ -27,7 +28,7 @@ import {
   useIonToast,
   useIonViewWillEnter,
 } from "@ionic/react";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Redirect, Route } from "react-router";
 import Settings from "./Settings";
 import { trashBinOutline } from "ionicons/icons";
@@ -37,6 +38,8 @@ const List: React.FC = () => {
   const [users, setUsers] = useState<any[]>([]);
   const [showAlert] = useIonAlert();
   const [showToast] = useIonToast();
+  const [selectedUser, setSelectedUser] = useState<any>(null);
+  const modal = useRef<HTMLIonModalElement>(null);
 
   // Works like useEffect hook
   useIonViewWillEnter(() => {
@@ -138,7 +141,7 @@ const List: React.FC = () => {
         ]}
 
         {users.map((user, index) => (
-          <IonCard key={index}>
+          <IonCard key={index} onClick={() => setSelectedUser(user)}>
             <IonCardContent class="ion-no-padding">
               <IonItem lines="none">
                 <IonAvatar slot="start">
@@ -153,6 +156,20 @@ const List: React.FC = () => {
             </IonCardContent>
           </IonCard>
         ))}
+        {/* Added modal */}
+        <IonModal ref={modal} isOpen={selectedUser !== null}>
+          <IonHeader>
+            <IonToolbar color={"success"}>
+              <IonButtons slot="start">
+                <IonButton onClick={() => modal.current?.dismiss()}>
+                  Cancel
+                </IonButton>
+                <IonTitle>User</IonTitle>
+              </IonButtons>
+            </IonToolbar>
+            <IonContent>Sheet</IonContent>
+          </IonHeader>
+        </IonModal>
       </IonContent>
     </IonPage>
   );
