@@ -9,6 +9,7 @@ import {
   IonCardTitle,
   IonChip,
   IonContent,
+  IonDatetime,
   IonFab,
   IonFabButton,
   IonHeader,
@@ -187,37 +188,38 @@ const List: React.FC = () => {
                 </IonTitle>
               </IonButtons>
             </IonToolbar>
-            {/*  */}
-            <IonToolbar color={"light"}>
-              <IonSegment
-                value={activeSegment}
-                onIonChange={(e) => setActiveSegment(e.detail.value!)}
-              >
-                <IonSegmentButton value="details">Details</IonSegmentButton>
-                <IonSegmentButton value="calendar">Calendar</IonSegmentButton>
-              </IonSegment>
-            </IonToolbar>
-            <IonContent className="ion-padding">
-              {activeSegment === "details" && (
-                <IonCard>
-                  <IonAvatar slot="start">
-                    <IonImg src={selectedUser?.picture.logo} />
-                  </IonAvatar>
-                  <IonCardContent className="ion-no-padding">
-                    <IonItem lines="none">
-                      <IonLabel className="ion-text-wrap">
-                        {selectedUser?.name.first} {selectedUser?.name.last}
-                        <p>{selectedUser?.email}</p>
-                      </IonLabel>
-                    </IonItem>
-                  </IonCardContent>
-                </IonCard>
-              )}
-            </IonContent>
           </IonHeader>
+          {/* Added segment */}
+          <IonToolbar color={"light"}>
+            <IonSegment
+              value={activeSegment}
+              onIonChange={(e) => setActiveSegment(e.detail.value!)}
+            >
+              <IonSegmentButton value="details">Details</IonSegmentButton>
+              <IonSegmentButton value="calendar">Calendar</IonSegmentButton>
+            </IonSegment>
+          </IonToolbar>
+          <IonContent className="ion-padding">
+            {activeSegment === "details" && (
+              <IonCard>
+                <IonAvatar slot="start">
+                  <IonImg src={selectedUser?.picture.logo} />
+                </IonAvatar>
+                <IonCardContent className="ion-no-padding">
+                  <IonItem lines="none">
+                    <IonLabel className="ion-text-wrap">
+                      {selectedUser?.name.first} {selectedUser?.name.last}
+                      <p>{selectedUser?.email}</p>
+                    </IonLabel>
+                  </IonItem>
+                </IonCardContent>
+              </IonCard>
+            )}
+            {activeSegment === "calendar" && <IonDatetime></IonDatetime>}
+          </IonContent>
         </IonModal>
       </IonContent>
-      {/* New Modal */}
+      {/* New bottom Modal */}
       <IonModal
         ref={cardModal}
         trigger="card-modal"
