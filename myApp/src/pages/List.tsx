@@ -46,7 +46,7 @@ const List: React.FC = () => {
   const [presentingElement, setPresentingElement] =
     useState<HTMLElement | null>(null);
   const page = useRef(null);
-
+  const [activeSegment, setActiveSegment] = useState<HTMLElement | null>(null);
   useEffect(() => {
     setPresentingElement(page.current);
   }, []);
