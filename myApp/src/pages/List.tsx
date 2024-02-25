@@ -20,6 +20,7 @@ import {
   IonTitle,
   IonToolbar,
   useIonAlert,
+  useIonToast,
   useIonViewWillEnter,
 } from "@ionic/react";
 import React, { useState } from "react";
@@ -31,6 +32,7 @@ const List: React.FC = () => {
   const [loading, setLoading] = useState<Boolean>(true);
   const [users, setUsers] = useState<any[]>([]);
   const [showAlert] = useIonAlert();
+  const [showToast] = useIonToast();
 
   // Works like useEffect hook
   useIonViewWillEnter(() => {
@@ -62,6 +64,11 @@ const List: React.FC = () => {
           text: "Delete",
           handler: () => {
             setUsers([]);
+            showToast({
+              message: "Users have been deleted",
+              duration: 2000,
+              color: "danger",
+            });
           },
         },
       ],
