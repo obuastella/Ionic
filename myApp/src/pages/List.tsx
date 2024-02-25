@@ -14,9 +14,13 @@ import {
   IonImg,
   IonItem,
   IonLabel,
+  IonListHeader,
   IonMenuButton,
   IonPage,
+  IonRefresher,
+  IonRefresherContent,
   IonSearchbar,
+  IonSkeletonText,
   IonTitle,
   IonToolbar,
   useIonAlert,
@@ -74,6 +78,12 @@ const List: React.FC = () => {
       ],
     });
   };
+
+  const doRefresh = async (event: any) => {
+    const data = await getUsers();
+    setUsers(data);
+    event.detail.complete();
+  };
   return (
     <IonPage>
       <IonHeader>
@@ -95,6 +105,38 @@ const List: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
+        {/* To refresh the page */}
+        <IonRefresher slot="fixed" onIonRefresh={(ev) => doRefresh(ev)}>
+          <IonRefresherContent />
+        </IonRefresher>
+
+        {/* Show Loading state ....Not working perfectly yet...*/}
+        {loading && [
+          ...Array(10).map((_, index) => (
+            <IonCard key={index}>
+              <IonCardContent class="ion-no-padding">
+                <IonItem lines="none">
+                  <IonAvatar slot="start">
+                    <IonSkeletonText animated={true} />
+                  </IonAvatar>
+                  <IonLabel>
+                    <IonSkeletonText
+                      animated={true}
+                      style={{ width: "150px" }}
+                    />
+                    <p>
+                      <IonSkeletonText
+                        animated={true}
+                        style={{ width: "80px" }}
+                      />
+                    </p>
+                  </IonLabel>
+                </IonItem>
+              </IonCardContent>
+            </IonCard>
+          )),
+        ]}
+
         {users.map((user, index) => (
           <IonCard key={index}>
             <IonCardContent class="ion-no-padding">
