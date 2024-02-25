@@ -30,7 +30,7 @@ import {
   useIonToast,
   useIonViewWillEnter,
 } from "@ionic/react";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Redirect, Route } from "react-router";
 import Settings from "./Settings";
 import { addOutline, trashBinOutline } from "ionicons/icons";
@@ -43,7 +43,13 @@ const List: React.FC = () => {
   const [selectedUser, setSelectedUser] = useState<any>(null);
   const modal = useRef<HTMLIonModalElement>(null);
   const cardModal = useRef<HTMLIonModalElement>(null);
+  const [presentingElement, setPresentingElement] =
+    useState<HTMLElement | null>(null);
+  const page = useRef(null);
 
+  useEffect(() => {
+    setPresentingElement(page.current);
+  }, []);
   // Works like useEffect hook
   useIonViewWillEnter(() => {
     const fetchData = async () => {
@@ -91,7 +97,7 @@ const List: React.FC = () => {
     event.detail.complete();
   };
   return (
-    <IonPage>
+    <IonPage ref={page}>
       <IonHeader>
         <IonToolbar color={"success"}>
           <IonButtons slot="start">
@@ -183,7 +189,11 @@ const List: React.FC = () => {
         </IonModal>
       </IonContent>
       {/* New Modal */}
-      <IonModal ref={cardModal} trigger="card-modal">
+      <IonModal
+        ref={cardModal}
+        trigger="card-modal"
+        presentingElement={presentingElement!}
+      >
         <IonHeader>
           <IonToolbar color={"success"}>
             <IonButtons slot="start">
@@ -198,7 +208,7 @@ const List: React.FC = () => {
       </IonModal>
 
       <IonFab vertical="bottom" horizontal="end" slot="fixed">
-        <IonFabButton>
+        <IonFabButton id="card-modal">
           <IonIcon icon={addOutline} />
         </IonFabButton>
       </IonFab>
